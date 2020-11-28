@@ -6,7 +6,8 @@ import classes from './Burger.css';
 
 const burger = (props) => {
 
-
+    // transformedIngredients is an Array of Arrays with the reduce
+    // [ [Burgeringredient, Burgeringredient], [Burgeringredient], [Burgeringredient] ]
     let transformeedIngredients = Object.keys( props.ingredients ).map( (ingredientItself, index) => {
         // have to return something inside map's anon function
                                                                 // here "_" just means not expectinga object
@@ -20,6 +21,15 @@ const burger = (props) => {
             )
         })
     })
+    
+    .reduce( (newRootArray, transformeedIngredientsElement) => {
+
+        //after returning this becomes the new newRootArray
+        // this basically  takes all nested array inside transformedIngredients
+        // and concats them in a new root array and makes that root array transformedIngredients
+        
+        return newRootArray.concat(transformeedIngredientsElement);  //concat is just pythoh List.extend()
+    }, []) // [] is the new initial state for a new array
 
 
 
@@ -39,17 +49,25 @@ const burger = (props) => {
 
     })
 
-    transformeedIngredients = []
+    // transformeedIngredients = []
 
-    for(const [key, value] of Object.entries(props.ingredients)){    
+    // for(const [key, value] of Object.entries(props.ingredients)){    
 
-        for (let i = 0; i < value; i++){
-            transformeedIngredients.push(
-                <Burgeringredient key={key + i} type={key} />
-            );
-        }
+    //     for (let i = 0; i < value; i++){
+    //         transformeedIngredients.push(
+    //             <Burgeringredient key={key + i} type={key} />
+    //         );
+    //     }
 
 
+    // }
+
+    
+    // we can work with jsx in any part of a class or a function
+    // whereever we can write javascript code
+    // as long as we have imported React
+    if (transformeedIngredients.length === 0){
+        transformeedIngredients = <p>Please Add Some Ingredients</p>
     }
 
 
