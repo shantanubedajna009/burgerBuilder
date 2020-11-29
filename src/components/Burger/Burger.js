@@ -8,32 +8,32 @@ const burger = (props) => {
 
     // transformedIngredients is an Array of Arrays with the reduce
     // [ [Burgeringredient, Burgeringredient], [Burgeringredient], [Burgeringredient] ]
-    let transformeedIngredients = Object.keys( props.ingredients ).map( (ingredientItself, index) => {
-        // have to return something inside map's anon function
-                                                                // here "_" just means not expectinga object
-                                                                // just blank in place of object
-        return [...Array( props.ingredients[ ingredientItself ] )].map( (_, i) => {
-            return (
-                // this array index "i" doesnt mean the order of the ingredient
-                // it is nothing fancy it just means just the index number of the array
-                // irrespective of the ingredient
-                <Burgeringredient key={ingredientItself + i} type={ingredientItself} />
-            )
-        })
-    })
+    // let transformeedIngredients = Object.keys( props.ingredients ).map( (ingredientItself, index) => {
+    //     // have to return something inside map's anon function
+    //                                                             // here "_" just means not expectinga object
+    //                                                             // just blank in place of object
+    //     return [...Array( props.ingredients[ ingredientItself ] )].map( (_, i) => {
+    //         return (
+    //             // this array index "i" doesnt mean the order of the ingredient
+    //             // it is nothing fancy it just means just the index number of the array
+    //             // irrespective of the ingredient
+    //             <Burgeringredient key={ingredientItself + i} type={ingredientItself} />
+    //         )
+    //     })
+    // })
     
-    .reduce( (newRootArray, transformeedIngredientsElement) => {
+    // .reduce( (newRootArray, transformeedIngredientsElement) => {
 
-        //after returning this becomes the new newRootArray
-        // this basically  takes all nested array inside transformedIngredients
-        // and concats them in a new root array and makes that root array transformedIngredients
+    //     //after returning this becomes the new newRootArray
+    //     // this basically  takes all nested array inside transformedIngredients
+    //     // and concats them in a new root array and makes that root array transformedIngredients
         
-        return newRootArray.concat(transformeedIngredientsElement);  //concat is just pythoh List.extend()
-    }, []) // [] is the new initial state for a new array
+    //     return newRootArray.concat(transformeedIngredientsElement);  //concat is just pythoh List.extend()
+    // }, []) // [] is the new initial state for a new array
 
 
 
-    transformeedIngredients = Object.keys( props.ingredients ).map((ingredientItself, index) => {
+    let transformeedIngredients = Object.keys( props.ingredients ).map((ingredientItself, index) => {
         let mainList = []
         let j = 0;
         for (let i = 0; i < props.ingredients[ingredientItself]; i++ ){
