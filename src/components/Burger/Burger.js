@@ -33,34 +33,34 @@ const burger = (props) => {
 
 
 
-    let transformeedIngredients = Object.keys( props.ingredients ).map((ingredientItself, index) => {
-        let mainList = []
-        let j = 0;
-        for (let i = 0; i < props.ingredients[ingredientItself]; i++ ){
+    // let transformeedIngredients = Object.keys( props.ingredients ).map((ingredientItself, index) => {
+    //     let mainList = []
+    //     let j = 0;
+    //     for (let i = 0; i < props.ingredients[ingredientItself]; i++ ){
             
-            mainList.push(
-                <Burgeringredient key={ingredientItself + j} type={ingredientItself} />
-            )
+    //         mainList.push(
+    //             <Burgeringredient key={ingredientItself + j} type={ingredientItself} />
+    //         )
 
-            j++;
-        }
-
-        return mainList;
-
-    })
-
-    // transformeedIngredients = []
-
-    // for(const [key, value] of Object.entries(props.ingredients)){    
-
-    //     for (let i = 0; i < value; i++){
-    //         transformeedIngredients.push(
-    //             <Burgeringredient key={key + i} type={key} />
-    //         );
+    //         j++;
     //     }
 
+    //     return mainList;
 
-    // }
+    // })
+
+    let transformeedIngredients = []
+
+    for(const [key, value] of Object.entries(props.ingredients)){    
+
+        for (let i = 0; i < value; i++){
+            transformeedIngredients.push(
+                <Burgeringredient key={key + i} type={key} />
+            );
+        }
+
+
+    }
 
     
     // we can work with jsx in any part of a class or a function

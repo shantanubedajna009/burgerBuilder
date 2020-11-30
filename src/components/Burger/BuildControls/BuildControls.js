@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const buildControls = (props) => {
 
 
-    //console.log('addIngredientHandler: ', props.addIngredientHandler);
+    //console.log('showOrderSummaryHandler: ', props.showOrderSummaryHandler);
     
 
     let buildControlList = props.ingredients.map( (ingredient, index) => {
@@ -45,6 +45,13 @@ const buildControls = (props) => {
             <p><strong>{props.priceOfBurger.toFixed(2)}</strong></p>
             
             {buildControlList}
+
+            <button 
+            className={classes.OrderButton}
+            disabled={!props.isPurchaseAble}
+            onClick={props.showOrderSummaryhandler}>
+                Order Now
+            </button>
         </div>
     )
 }

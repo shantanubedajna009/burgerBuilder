@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Aux from '../../hoc/Aux';
 import Burger from '../../components/Burger/Burger';
-import BuildControls from '../../components/Burger/BuildControls/BuildControls';
+//import BuildControls from '../../components/Burger/BuildControls/BuildControls';
+import Buildcontrols from '../../components/Burger/BuildControls/BuildControls';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import Modal from '../../components/UI/Modal/Modal';
 
 const PRICES_OF_INGREDIENTS = {
     salad: 0.2,
@@ -20,6 +23,8 @@ class BurgerBuilder extends Component {
             cheese: 0,
         },
         priceOfBurger: 4,
+        isPurchaseAble: false,
+        showOrderSummary: false,
     }
 
 
@@ -43,6 +48,8 @@ class BurgerBuilder extends Component {
         })
 
         //console.log(this.state.ingredients);
+
+        this.changePurchasable(dupObject);
     }
 
     deleteIngredientHandler = (type) => {
@@ -62,11 +69,36 @@ class BurgerBuilder extends Component {
                     priceOfBurger: prevState.priceOfBurger - PRICES_OF_INGREDIENTS[type],
                 }
             })
+
+            this.changePurchasable(dupObject);
         }
 
-        
-        
+    }
 
+    changePurchasable = (ingredients) => {
+
+        let sum=0;
+        for (const [key, value] of Object.entries(ingredients)){
+            sum+=value;
+        }
+
+
+        if (sum === 0){
+            this.setState({
+                isPurchaseAble: false
+            })
+        }else{
+            this.setState({
+                isPurchaseAble: true
+            })
+        }
+
+    }
+
+
+    showOrderSummaryhandler = () => {
+        //console.log('dude im clicked');
+        this.setState({showOrderSummary: true})
     }
 
 
@@ -79,11 +111,17 @@ class BurgerBuilder extends Component {
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients} />
+
+                <Modal show={this.state.showOrderSummary}>
+                    <OrderSummary ingredients={ Object.entries( this.state.ingredients ) } />
+                </Modal>
                 
-                <BuildControls addIngredientHandler={ this.addIngredientHandler } 
-                deleteIngredientHandler={ this.deleteIngredientHandler }
-                ingredients={Object.entries( this.state.ingredients )}
-                priceOfBurger={this.state.priceOfBurger}
+                <Buildcontrols addIngredientHandler={ this.addIngredientHandler } 
+                    deleteIngredientHandler={ this.deleteIngredientHandler }
+                    ingredients={Object.entries( this.state.ingredients )}
+                    priceOfBurger={this.state.priceOfBurger}
+                    isPurchaseAble={this.state.isPurchaseAble}
+                    showOrderSummaryhandler={this.showOrderSummaryhandler}
                 />
             </Aux>
         )
