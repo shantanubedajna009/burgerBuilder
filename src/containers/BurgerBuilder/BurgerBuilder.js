@@ -5,6 +5,7 @@ import Burger from '../../components/Burger/Burger';
 import Buildcontrols from '../../components/Burger/BuildControls/BuildControls';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Modal from '../../components/UI/Modal/Modal';
+import ShowBackdropContext from '../../context/showBackdropContext';
 
 const PRICES_OF_INGREDIENTS = {
     salad: 0.2,
@@ -101,6 +102,15 @@ class BurgerBuilder extends Component {
         this.setState({showOrderSummary: true})
     }
 
+    hideOrderSummaryHandler = () => {
+        //console.log('laaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+        this.setState({showOrderSummary: false})
+    }
+
+    successOrderHandler = () => {
+        alert('Yayyy ! Order Successful');
+    }
+
 
 
     
@@ -109,12 +119,23 @@ class BurgerBuilder extends Component {
         //console.log('the state: ', this.state)
 
         return (
+            //<ShowBackdropContext.Provider value={{showContextHandler: this.hideOrderSummary}}>
             <Aux>
+
                 <Burger ingredients={this.state.ingredients} />
 
-                <Modal show={this.state.showOrderSummary}>
-                    <OrderSummary ingredients={ Object.entries( this.state.ingredients ) } />
-                </Modal>
+                <ShowBackdropContext.Provider value={{showContextHandler: this.hideOrderSummaryHandler}}>
+
+                    <Modal show={this.state.showOrderSummary}>
+                        <OrderSummary ingredients={ Object.entries( this.state.ingredients ) } 
+                        cancelHandler={this.hideOrderSummaryHandler}
+                        successHandler={this.successOrderHandler}
+                        priceOfBurger={this.state.priceOfBurger}
+                        />
+                    </Modal>
+
+                </ShowBackdropContext.Provider>
+                
                 
                 <Buildcontrols addIngredientHandler={ this.addIngredientHandler } 
                     deleteIngredientHandler={ this.deleteIngredientHandler }
@@ -123,7 +144,10 @@ class BurgerBuilder extends Component {
                     isPurchaseAble={this.state.isPurchaseAble}
                     showOrderSummaryhandler={this.showOrderSummaryhandler}
                 />
+
             </Aux>
+            
+            //</ShowBackdropContext.Provider>
         )
     }
 }
