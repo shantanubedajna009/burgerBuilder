@@ -1,6 +1,7 @@
 import React from 'react';
 import Aux from '../../../hoc/Aux';
 import Button from '../../UI/Button/Button';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const orderSummary = (props) => {
@@ -10,7 +11,7 @@ const orderSummary = (props) => {
      let listItems = []
     for (const [key, value] of props.ingredients){
         listItems.push(
-            <li><span style={ {textTransform: 'capitalize'} }>{key}</span>: {value}</li>         
+            <li key={uuidv4()}><span style={ {textTransform: 'capitalize'} }>{key}</span>: {value}</li>         
         )
     }
 
@@ -21,7 +22,7 @@ const orderSummary = (props) => {
             <ul>
                 {listItems}
             </ul>
-            <p><strong>Total Price {props.priceOfBurger}</strong></p>
+            <p><strong>Total Price {props.priceOfBurger.toFixed(2)}</strong></p>
 
             <Button btnType="Danger" clickHandler={props.cancelHandler}>
                 Cancel
