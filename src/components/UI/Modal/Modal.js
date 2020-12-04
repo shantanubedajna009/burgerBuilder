@@ -8,7 +8,7 @@ const modal = (props) => {
 
     return (
         <Aux>
-            <Backdrop show={props.show} />
+            <Backdrop />
 
             <div className={classes.Modal}
             style={{

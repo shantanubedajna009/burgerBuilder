@@ -13,7 +13,7 @@ const backdrop = (props) => {
         // if js code is outside jsx and not wrapped in 
         // any jsx then it doesnt require to be inside curly braces {}
         // ans as you can see coments can be written like this also //
-        props.show ?
+        cntxt.showBackdrop ?
         <div className={classes.Backdrop} onClick={cntxt.showContextHandler}>
             
         </div>

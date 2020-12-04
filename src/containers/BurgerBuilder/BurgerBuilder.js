@@ -124,7 +124,12 @@ class BurgerBuilder extends Component {
 
                 <Burger ingredients={this.state.ingredients} />
 
-                <ShowBackdropContext.Provider value={{showContextHandler: this.hideOrderSummaryHandler}}>
+                <ShowBackdropContext.Provider value={
+                    {   showBackdrop: this.state.showOrderSummary,
+                        showContextHandler: this.hideOrderSummaryHandler
+                    }
+                        
+                }>
 
                     <Modal show={this.state.showOrderSummary}>
                         <OrderSummary ingredients={ Object.entries( this.state.ingredients ) } 
