@@ -2,7 +2,7 @@
 import React, {Component as cp, PureComponent as pp} from 'react';
 import classes from './Modal.css';
 import Backdrop from '../Backdrop/Backdrop';
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../hoc/Auxilary';
 
 const modal = (props) => {
 

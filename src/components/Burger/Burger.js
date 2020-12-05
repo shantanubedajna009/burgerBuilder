@@ -1,5 +1,5 @@
 import React from 'react';
-import Aux from '../../hoc/Aux';
+import Aux from '../../hoc/Auxilary';
 import Burgeringredient from './Burgeringredient/Burgeringredient';
 import classes from './Burger.css';
 

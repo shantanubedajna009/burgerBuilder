@@ -1,5 +1,5 @@
 import React from 'react';
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../hoc/Auxilary';
 import Button from '../../UI/Button/Button';
 import { v4 as uuidv4 } from 'uuid';
 
